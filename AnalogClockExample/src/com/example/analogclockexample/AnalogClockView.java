@@ -40,10 +40,10 @@ public class AnalogClockView extends RelativeLayout{
 	private int mSecondAngle = INVALID_ANGLE;
 	
 	/* resources */
-	private int mDialBackgroundResource;
-	private int mHourBackgroundResource;
-	private int mMinuteBackgroundResource;
-	private int mSecondBackgroundResource;
+	private int mDialBackgroundResource = R.drawable.clock_dial_typical;
+	private int mHourBackgroundResource = R.drawable.clock_hand_hour;
+	private int mMinuteBackgroundResource = R.drawable.clock_hand_minute;
+	private int mSecondBackgroundResource = R.drawable.clock_hand_second;
 	
 	private static final int INVALID_ANGLE = -1;
 	private static final int DEGREE_MINUTE = 6;
@@ -213,6 +213,7 @@ public class AnalogClockView extends RelativeLayout{
 
 	public void setDialResource(int id){
 		this.mDialBackgroundResource = id;
+		setBackgroundResource(mDialBackgroundResource);
 	}
 	public void setHourResource(int id){
 		this.mHourBackgroundResource = id;
