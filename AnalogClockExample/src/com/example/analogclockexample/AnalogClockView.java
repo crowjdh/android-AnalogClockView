@@ -25,6 +25,7 @@ import android.widget.RelativeLayout;
 public class AnalogClockView extends RelativeLayout{
 	private Context mContext;
 
+	/* views */
 	private ImageView mHourHand;
 	private ImageView mMinuteHand;
 	private ImageView mSecondHand;
