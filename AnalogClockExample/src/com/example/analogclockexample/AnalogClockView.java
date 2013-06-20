@@ -121,17 +121,16 @@ public class AnalogClockView extends RelativeLayout{
 		isRunning = true;
 		isFirstTick = true;
 
-		Calendar tempCal = Calendar.getInstance();
-		int timeToWaitInMilli = (int)tempCal.getTimeInMillis()%1000;
-
-		mHandler.sendEmptyMessageDelayed(0, timeToWaitInMilli);
+//		Calendar tempCal = Calendar.getInstance();
+		int diffInMilli = (int)System.currentTimeMillis()%1000;
+		mHandler.sendEmptyMessageDelayed(0, 1000 - diffInMilli);
 	}
 	public void stop(){
 		if (!isRunning)
 			return;
 		isRunning = false;
 	}
-	private void proceed(){
+	private void tick(){
 		if (!isRunning)
 			return;
 		TimeZone tz = TimeZone.getTimeZone(TIMEZONE_ID);
@@ -142,7 +141,7 @@ public class AnalogClockView extends RelativeLayout{
 		int hour = tempCal.get(Calendar.HOUR);
 		int min = tempCal.get(Calendar.MINUTE);
 		int sec = tempCal.get(Calendar.SECOND);
-//		Log.i(TAG, "hour : " + hour + ", minute : " + min + ", sec : " + sec);
+		Log.i(TAG, "hour : " + hour + ", minute : " + min + ", sec : " + sec);
 
 		int newHourAngle = hour * HOUR_TO_HOUR_DEGREE + (min/MINUTE_TO_HOUR_DEGREE)*DEGREE_MINUTE;
 		int newMinuteAngle = min * DEGREE_MINUTE;
@@ -172,7 +171,7 @@ public class AnalogClockView extends RelativeLayout{
 		mHourAngle = newHourAngle;
 		mMinuteAngle = newMinuteAngle;
 		mSecondAngle = newSecondAngle;
-//		Log.i(TAG, "hourAngle : " + mHourAngle + ", minuteAngle : " + mMinuteAngle + ", secAngle : " + mSecondAngle);
+		Log.i(TAG, "hourAngle : " + mHourAngle + ", minuteAngle : " + mMinuteAngle + ", secAngle : " + mSecondAngle);
 	}
 
 //	private void _rotate(ImageView view, Point p, int angle){
@@ -231,8 +230,12 @@ public class AnalogClockView extends RelativeLayout{
 	private Handler mHandler = new Handler(){
 		public void handleMessage( Message msg ){
 			if (isRunning){
-				proceed();
-				mHandler.sendEmptyMessageDelayed( 0 , 1000 );
+//				long startMilli = System.currentTimeMillis();
+				tick();
+				long endMilli = System.currentTimeMillis();
+				long delay = endMilli%1000;//(endMilli - startMilli)%1000; 
+				
+				mHandler.sendEmptyMessageDelayed(0, 1000 - delay);
 			}
 		}
 	};
