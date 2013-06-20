@@ -1,31 +1,26 @@
-android-AnalogClockView
-=======================
-
-hour, minute, second hand available. can choose timezone.
-
-
 How to use
-resource
-1. copy "res/values/attr.xml" to your project.
-2. copy "res/drawable-mdpi/clock_*" to your project.
+==========
+##resource<br/>
+1. copy "res/values/attr.xml" to your project.<br/>
+2. copy "res/drawable-mdpi/clock_*" to your project.<br/>
 
-xml
-<com.example.analogclockexample.AnalogClockView
+##*xml*
+<pre><code>
+&lt;com.example.analogclockexample.AnalogClockView
         android:id="@+id/clock"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_centerInParent="true"
         clock:dial="@drawable/clock_dial_simple"
-        />
+/&gt;</code></pre>
+####*attributes*<br/>
+*	dial        : frame of clock<br/>
+*	hand_hour   : hour hand<br/>
+*	hand_minute : minute hand<br/>
+*	hand_second : second hand<br/>
 
-attributes
-  dial        : frame of clock
-  hand_hour   : hour hand
-  hand_minute : minute hand
-  hand_second : second hand
-
-in activity
-public class AnalogClockAct extends Activity {
+##in activity
+<pre><code>public class AnalogClockAct extends Activity {
   private AnalogClockView mClockView;
   @Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,4 +38,4 @@ public class AnalogClockAct extends Activity {
 		super.onPause();
 		mClockView.stop();
 	}
-}
+}</code></pre>
