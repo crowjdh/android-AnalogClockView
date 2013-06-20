@@ -213,7 +213,7 @@ public class AnalogClockView extends RelativeLayout{
 
 	public void setDialResource(int id){
 		this.mDialBackgroundResource = id;
-		setBackgroundResource(mDialBackgroundResource);
+		setBackgroundResource(mDialBackgroundResource);//
 	}
 	public void setHourResource(int id){
 		this.mHourBackgroundResource = id;
